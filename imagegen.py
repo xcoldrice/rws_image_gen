@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 import matplotlib.patheffects as path_effects
 import mysql.connector as connector
 
-path_to_laravel_storage = "C:\laragon\www\prsd-cms-reactjs\public\storage"
+path_to_laravel_storage = "C:\laragon\www\prsd-cms-reactjs\storage\\app\public"
 areas_font_color = "#03021E"
 pill_height = 27
 margin = 5
@@ -400,19 +400,25 @@ position = (
 overlay = Image.new("RGBA", template.size, (0, 0, 0, 0))
 overlay.paste(philippines_map, position, philippines_map)
 result = Image.alpha_composite(template, overlay)
-output_image_path = path_to_laravel_storage + "/" + prsd_code.lower()+ "_" + sys.argv[1] + "_" + sys.argv[2] + "_warning_map.png"
+output_image_path = path_to_laravel_storage + "/" + prsd_code.lower()+ "_" + sys.argv[3] + "_warning_map.png"
 # output_image_path = set_path(prsd_code.lower()+ "_" + sys.argv[1] + "_" + sys.argv[2] + "_warning_map.png")
 result.save(output_image_path)
 
-add_text_to_image(    
-    prsd_code,
-    rainfall_type,
-    rainfall_no,
-    rainfall_issue_option,
-    issued_at,
-    weather_systems,
-    hazards,
-    format_areas(selected_areas, municipality_count),
-    output_image_path
-)
+try:
 
+    add_text_to_image(    
+        prsd_code,
+        rainfall_type,
+        rainfall_no,
+        rainfall_issue_option,
+        issued_at,
+        weather_systems,
+        hazards,
+        format_areas(selected_areas, municipality_count),
+        output_image_path
+    )
+
+    print("success")
+    
+except Exception as e:
+    sys.exit(1)
