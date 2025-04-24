@@ -28,4 +28,4 @@ tensorflow==2.10.1
 tzdata==2024.2
 urllib3==1.26.20
 zipp==3.21.0
-requirements.txt==9.2.0
+mysql-connector-python==9.2.0
