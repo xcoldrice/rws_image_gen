@@ -10,8 +10,13 @@ from datetime import datetime
 import matplotlib.pyplot as plt
 import matplotlib.patheffects as path_effects
 import mysql.connector as connector
+from dotenv import load_dotenv
 
-path_to_laravel_storage = "C:\laragon\www\prsd-cms-reactjs\storage\\app\public"
+load_dotenv()
+
+# path_to_laravel_storage = "C:\laragon\www\prsd-cms-reactjs\storage\\app\public"
+path_to_laravel_storage = os.getenv("LARAVEL_STORAGE_PATH")
+
 areas_font_color = "#03021E"
 pill_height = 27
 margin = 5
@@ -229,10 +234,10 @@ def add_text_to_image(
     return image_path
 
 db_con = connector.connect(
-    host="localhost",
-    database="prsd-cms",
-    user="root",
-    password=""
+    host=os.getenv("DB_HOST"),
+    database=os.getenv("DB_DATABASE"),
+    user=os.getenv("DB_USERNAME"),
+    password=os.getenv("DB_PASSWORD")
 )
 
 rainfall_cursor = db_con.cursor()
