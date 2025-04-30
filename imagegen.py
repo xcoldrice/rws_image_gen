@@ -388,7 +388,7 @@ plt.axis("off")
 
 phil_map = prsd_code.lower() + "_philippines_map.png"
 plt.savefig(phil_map, dpi=300, bbox_inches="tight", transparent=True)
-template = Image.open(set_path("templates/latest.png"))
+template = Image.open(set_path("templates/" + os.getenv("IMAGE_TEMPLATE") +".png"))
 philippines_map = Image.open(set_path(phil_map))
 resize_percentage = map_config["size"]
 philippines_map = resize_image_by_percentage(philippines_map, resize_percentage)
